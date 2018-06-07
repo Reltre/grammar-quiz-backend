@@ -4,7 +4,7 @@ class QuestionFilter
   end
 
   # Parse data into a hash, organized by question id
-  def self.parse(questions, fields)
+  def parse(questions, fields)
     questions.each do |question|
       question_arr = question.split(',')
       question_id = question_arr[-2]
@@ -17,9 +17,10 @@ class QuestionFilter
       
       @questions_hash[question_id] = question_hash
     end
+    @questions_hash
   end
 
-  def self.filter(number)
+  def filter(number)
     p @questions_hash
   end
 end
