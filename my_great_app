@@ -7,7 +7,9 @@ require "./question_filter.rb"
 number_of_questions = ARGV[0]
 questions = IO.readlines("./questions.csv")
 fields = questions.shift.split(",")
-questions.shift
+
+# Remove newline from end of question string
+fields[-1].chop
 questions_hash = {}
 
 # Parse data into a hash, organized by question id
@@ -24,4 +26,6 @@ questions.each do |question|
   questions_hash[question_id] = question_hash
 end
 
+
+p questions_hash
 # QuestionFilter.parse()
