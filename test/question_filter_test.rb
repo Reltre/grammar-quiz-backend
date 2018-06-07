@@ -1,13 +1,15 @@
 require "minitest/autorun"
+require "question_filter"
 
-class TestSample < Minitest::Test
+class TestQuestionFilter < Minitest::Test
   def setup
-    # setup
+    @question_data = IO.readlines("./questions.csv")
+    @fields = questions.shift.split(",")
+    @filter = filter = QuestionFilter.new
   end
 
-  def test_certain_behavior
-    # exercise
-    # assert
+  def test_parse_reads_in_question_data
+    
   end
 
   def teardown
