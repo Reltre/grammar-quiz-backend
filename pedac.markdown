@@ -62,3 +62,6 @@ by the user from the command line.
 ### Code (with intent)
 
 See script and tests.
+
+> Note, I believe I spent too much time on the implementation details. Thanks for looking
+over my code!

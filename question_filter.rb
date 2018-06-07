@@ -1,6 +1,7 @@
 class QuestionFilter
   def initialize
     @questions_hash = {}
+    @selected_questions = []
   end
 
   # Parse data into a hash, organized by question id
@@ -21,6 +22,10 @@ class QuestionFilter
   end
 
   def filter(number)
-    p @questions_hash
+    # @questions_hash
+  end
+
+  def print
+    return @selected_questions
   end
 end
