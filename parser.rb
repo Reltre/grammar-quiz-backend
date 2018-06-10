@@ -1,6 +1,10 @@
 class Parser
-  def self.format(question_data)
-    questions = question_data.split("\n")
+  def initialize(file)
+    @question_data = IO.read("./questions.csv")
+  end
+
+  def format
+    questions = @question_data.split("\n")
     fields = questions.shift.split(",")
     formatted_questions = []
 

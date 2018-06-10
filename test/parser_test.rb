@@ -3,7 +3,7 @@ require "./parser"
 
 class TestParser < Minitest::Test
   def test_format_reads_data_into_hash
-    data = IO.read("./questions.csv")
+    parser = Parser.new("./questions.csv")
     expected_questions = [
       {:strand_id=>"1", :strand_name=>"Nouns", :standard_id=>"1", :standard_name=>"Common Nouns", :question_id => "1", :"difficulty"=>"0.7"},
       {:strand_id=>"1", :strand_name=>"Nouns", :standard_id=>"1", :standard_name=>"Common Nouns", :question_id => "2", :"difficulty"=>"0.6"}, 
@@ -19,6 +19,6 @@ class TestParser < Minitest::Test
       {:strand_id=>"2", :strand_name=>"Verbs", :standard_id=>"6", :standard_name=>"Reflexive Verbs", :question_id => "12", :"difficulty"=>"0.2"}
   ]
 
-  assert_equal expected_questions, Parser.format(data)
+  assert_equal expected_questions, parser.format
   end
 end
