@@ -29,25 +29,10 @@ strand 2.
 
 ### Data Structure(s)
 
-1 array that stores each question from the data as a string element.
-
-1 nested hash that stores each question by question id. The question id
-points to another hash that has data corresponding to each question.
-Each standard will have an additional field marking whether that question has
-been selected or not.
-
-1 array to store question_ids, to be stringified and returned to the user as the end result.
-
-1 integer for the number of question chosen.
-
-1 hash representing the various strands how many question from each strand have
-been chosen.
-
 #### Classes
 
 1. QuestionFilter
-  1. Has a number of questions to filter
-  2. Takes  
+  1. Has a filter method. Take an argument that specifies how to filter the existing questions.
 
 2. Strand
   1. Has an id
@@ -69,6 +54,7 @@ been chosen.
 5. Quiz
   1. Has a parser
   2. Has an array or strands.
+  3. Has a filter
 
 ### Algorithm
 
@@ -92,16 +78,31 @@ been chosen.
 
 #### Example usage
 
+*If this is organized as a 1:M relationship with collaborators.*
+
 1. Grab all questions from strand 1
   1. quiz.strands.first -> strand.standards.each -> standard.questions
   2. quiz.questions.select -> standard.id 1
 2. Generate 1 question
   1. quiz.questions.first -> id
-3. Generate 2. questions
-  1. quiz.questions.each ->
-  2. question.standard -> 1 && question.strand -> 1 -> Add to quiz
-  3. question.standard -> n > 1 && question.strand -> 2 -> Add to quiz
 
+*If this is organized as a M:M relationship between questions, strands,
+and standards. 1:M and 1:1 for questions and quiz.
+
+1. Generate 2 questions
+  1. questions.sort_by(standard)
+  2. Add question from standard 1
+  2. Add question from standard 2
+
+2. Generate n questions
+  1. questions.sort_by(standard)
+  2. Add question from standard 1
+  3. Add question from standard 2 
+  4. Add question from standard 1
+  5. Add question from standard 2
+  6. Is the number of question requested odd?
+    1. If so, when the number of questions added is one less than the number
+    requested, add an additional question from last standard.
 
 ### Code (with intent)
 
