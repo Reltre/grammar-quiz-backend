@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require "./parser"
+require "./src/parser"
 
 class TestParser < Minitest::Test
   def test_format_reads_data_into_hash

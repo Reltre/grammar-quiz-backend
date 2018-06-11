@@ -1,4 +1,4 @@
-require "./data_support"
+require "./lib/data_support"
 
 class Question
   attr_reader :id, :difficulty

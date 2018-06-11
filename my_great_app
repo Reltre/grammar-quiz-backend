@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require "./question_filter.rb"
-require "./quiz.rb"
+require "./src/question_filter.rb"
+require "./src/quiz.rb"
 
 
 # Read in initial data

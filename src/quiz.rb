@@ -1,7 +1,7 @@
-require "./parser.rb"
-require "./question.rb"
-require "./strand.rb"
-require "./standard.rb"
+require "./src/parser.rb"
+require "./src/question.rb"
+require "./src/strand.rb"
+require "./src/standard.rb"
 
 class Quiz
   attr_reader :questions, :strands
