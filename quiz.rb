@@ -6,25 +6,30 @@ require "./standard.rb"
 class Quiz
   attr_reader :questions, :strands
 
-  def initialize(data_file)
+  def initialize(data_file, number_of_questions)
     @questions = []
     @strands = []
     @standards = []
     @question_data = Parser.new(data_file).format
-    # binding.irb
+    @question_ids = []
+    @number_of_questions = number_of_questions.to_i
     post_initialize
   end
 
-  def generate(question_count)
-    question_ids = []
-    question_count.times do |count|
+  def generate
+    @question_ids = []
+    @number_of_questions.times do |count|
       strands.each do |strand|
-        question_ids << strand.questions[count].id
-        break if question_ids.size == question_count
+        @question_ids << strand.questions[count].id
+        break if @question_ids.size == @number_of_questions
       end
     end
 
-    question_ids.join(",")
+    @question_ids
+  end
+
+  def show
+    puts @question_ids.join(",")
   end
 
   private

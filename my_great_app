@@ -1,31 +1,10 @@
 #!/usr/bin/env ruby
 
 require "./question_filter.rb"
+require "./quiz.rb"
 
 
 # Read in initial data
-number_of_questions = ARGV[0]
-questions = IO.readlines("./questions.csv")
-fields = questions.shift.split(",")
-
-# Remove newline from end of question string
-fields[-1].chop
-questions_hash = {}
-
-# Parse data into a hash, organized by question id
-questions.each do |question|
-  question_arr = question.split(',')
-  question_id = question_arr[-2]
-  question_hash = {}
-  
-  fields.each_with_index do |field, index|
-    next if field == "question_id"
-    question_hash[field.to_sym] = question_arr[index]
-  end
-  
-  questions_hash[question_id] = question_hash
-end
-
-
-p questions_hash
-# QuestionFilter.parse()
+quiz = Quiz.new("./questions.csv", ARGV[0])
+quiz.generate
+quiz.show
