@@ -1,4 +1,6 @@
 class Strand
+  attr_reader :id, :name
+
   def initialize(metadata)
     @id = metadata[:strand_id]
     @name = metadata[:strand_name]
