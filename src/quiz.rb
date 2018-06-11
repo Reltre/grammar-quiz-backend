@@ -18,11 +18,12 @@ class Quiz
 
   def generate
     @question_ids = []
-    @number_of_questions.times do |count|
-      strands.each do |strand|
-        @question_ids << strand.questions[count].id
-        break if @question_ids.size == @number_of_questions
-      end
+    count = 0
+    strands.cycle.with_index do |strand, index|
+      count -= index
+      @question_ids << strand.questions[count].id
+      break if @question_ids.size == @number_of_questions
+      count += 1
     end
 
     @question_ids
