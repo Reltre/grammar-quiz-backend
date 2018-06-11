@@ -20,10 +20,11 @@ class Quiz
     question_count.times do |count|
       strands.each do |strand|
         question_ids << strand.questions[count].id
+        break if question_ids.size == question_count
       end
     end
 
-    question_ids
+    question_ids.join(",")
   end
 
   private
