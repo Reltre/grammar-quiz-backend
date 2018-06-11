@@ -60,21 +60,19 @@ strand 2.
 
 #### Data Organization
 
-1. Create a new quiz. When initialized, it calls parser to organize data for it. 
-2. Read in the entire questions.csv file into a Parser.
+1. Create a new quiz. When initialized, it calls `generate` to organize data. 
+2. Read in the entire questions.csv file into the quiz and pass the number of questions to find.
   1. Pass in the file name to parse.
-  2. Call `Parser.parse` which takes a local file to parse and then reads
-  in that file, organized as an array of question hashes.
-3. Creates strands for the quiz
-  1. The quiz class creates iterates through the question data
-  and organizes it by strand.
-  2. Cache relevant data related to the strand: id and name.
-4. When creating a strand, create a list of standards for it.
-  1. Pass the question data along, grabbing each piece of information
-  related to this standard: id, and name.
-  2. Associate a list of questions for that standard.
-5. Create a Question as part of the association to each standard.
-  1. A question should have id and a difficulty.
+3. Organize underlying data for the quiz.
+  1. Create questions
+  2. Create standards
+  3. Create strands
+4. Cycle through strands until all relevant question ids are found. 
+  1. Aternate taking one question from each strand.
+  2. Exception: If the number of questions requested is odd, add an additional
+  question from the last strand in the set of strands.
+5. Display the collected question ids to the user by calling `show`, which formats
+and displays the collection of question id number created in `generate`.
 
 #### Example usage
 
@@ -107,6 +105,3 @@ and standards. 1:M and 1:1 for questions and quiz.
 ### Code (with intent)
 
 See script and tests.
-
-> Note, I believe I spent too much time on the implementation details. Thanks for looking
-over my code!
